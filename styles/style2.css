@@ -1,0 +1,266 @@
+body,
+html {
+  font-family: "Londrina Solid";
+  height: 50%;
+  margin: 0 auto;
+  position: relative;
+  background: #00c3ff;
+}
+
+/*Title */
+.title {
+  height: 4vw;
+  background-image: url("logo.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  filter: blur(5px);
+  opacity: 0.7;
+  pointer-events: none;
+  animation-duration: 1s;
+}
+
+/* Rtable unblur animation */
+@keyframes unBlur {
+  0% {
+    filter: blur(5px);
+    opacity: 0.7;
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  padding: 1vw;
+  overflow: hidden;
+  list-style: none;
+  border: solid 0.15vw #ffffff;
+  /* border-image-source: linear-gradient(to right, #1cf7ff, #00c3ff); */
+  font-size: 4vw;
+}
+
+/* Table column sizing
+  ================================== */
+
+.Rtable--6cols > .Rtable-cell {
+  width: 16.6%;
+}
+/* Page styling
+  ================================== */
+@font-face {
+  font-family: "Londrina Solid";
+  src: url("../fonts/LondrinaSolid-Regular.ttf");
+}
+
+/* table heads */
+
+div.numbers {
+  padding-right: 0.2vw;
+  text-align: center;
+}
+
+.letters {
+  text-align: center;
+  padding-bottom: 0;
+}
+/* Button styling */
+.place {
+  background-color: #fee140;
+  background-image: linear-gradient(to bottom, #fee140 0%, #fa709a 100%);
+
+  font-size: 0;
+  font-weight: bolder;
+  color: white;
+  text-align: center;
+}
+
+.place:hover {
+  background: linear-gradient(to bottom, #68f54c 5%, #61b350 100%);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.disabled {
+  pointer-events: none;
+  background-image: linear-gradient(to top, #fee140 0%, #fa709a 100%);
+}
+
+/* Teams */
+
+#teamsContainer {
+  position: relative;
+  margin: auto;
+}
+.team {
+  margin: 0 2vw 0 0;
+  text-align: center;
+  float: left;
+}
+.team h4 {
+  font-size: 3vw;
+  margin: 1vw auto 0 auto;
+}
+
+.points {
+  font-size: 2vw;
+  padding-bottom: 1vw;
+}
+
+.skipTurn {
+  margin-top: 1vw;
+}
+/* Typhoon gif */
+
+#TyphoonGif {
+  position: relative;
+  visibility: hidden;
+  height: 49vw;
+  margin: 0 auto;
+  background-image: url("../img/typhoongif.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 9999;
+}
+
+/* modal */
+
+.logo {
+  width: 40%;
+  height: 40%;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -10%);
+  width: 50vw;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vw 2vw;
+  border: 3px solid black;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  animation-name: bounceInDown;
+  animation-duration: 1.5s;
+}
+
+@keyframes bounceInDown {
+  0% {
+    top: -500%;
+  }
+  70% {
+    top: 50%;
+  }
+  85% {
+    top: 45%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    width: 50vw;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+.message {
+  font-size: 5vw;
+  margin: 1vw 0;
+}
+.btn {
+  color: inherit;
+  font-family: inherit;
+  font-size: 2vw;
+  background: white;
+  max-height: 5vw;
+  padding: 0.4vw 1vw;
+  border: 0.2vw solid black;
+  margin-right: 2.6vw;
+  box-shadow: 0 0 0 black;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.btn:hover {
+  box-shadow: 0.4vw 0.4vw 0 black;
+  transform: translate(-0.4vw, -0.4vw);
+}
+
+.btn:active {
+  box-shadow: 0 0 0 black;
+  transform: translate(0, 0);
+}
+
+.btn.round-corners {
+  border-radius: 50%;
+  height: 3vw;
+  width: 3vw;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.plus {
+  background-image: url(../img/plus.svg);
+  background-position: center;
+  background-size: 1vw;
+  background-repeat: no-repeat;
+}
+
+.minus {
+  background-image: url(../img/minus.svg);
+  background-position: center;
+  background-size: 1vw;
+  background-repeat: no-repeat;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#T {
+  font-size: 3vw;
+  margin: 1vw 0;
+}
+
+/* get extra space for the reset and go buttons */
+div.options + div.options {
+  margin-top: 3vw;
+}
+
+/* remove effects from number of teams */
+.no-effects:hover {
+  box-shadow: none;
+  transform: translate(0, 0);
+}
+
+/* modal animation */

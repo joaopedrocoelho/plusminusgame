@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+  </head>
+  <body>
+    <div class="modal">
+      <img src="logo.png" alt="" class="logo" />
+      <p class="message">Game Options</p>
+      <p class="T">T = : Lose 5 points to other teams</p>
+      <div class="options">
+        <button class="btn" onclick="generateT()">Generate</button>
+      </div>
+      <p class="message">Number of Teams:</p>
+      <div class="options">
+        <button class="btn round-corners minus" onclick="minusTeam()"></button>
+        <button class="btn no-effects">2</button>
+        <button class="btn round-corners plus" onclick="plusTeam()"></button>
+      </div>
+      <div class="options">
+        <button class="btn" onclick="resetOptions()">Reset</button>
+        <button class="btn" onclick="startGame()">Go!</button>
+      </div>
+    </div>
+  </body>
+</html>

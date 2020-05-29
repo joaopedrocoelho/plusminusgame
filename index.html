@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
+    <title>Typhoon</title>
+    <link rel="stylesheet" type="text/css" href="styles/style2.css" />
+      </head>
+  <body>
+    
+    <!-- <div class="title"></div> -->
+    <div class="Rtable Rtable--6cols" id='game'>
+      <div class="Rtable-cell letters"></div>
+      <div class="Rtable-cell letters">A</div>
+      <div class="Rtable-cell letters">B</div>
+      <div class="Rtable-cell letters">C</div>
+      <div class="Rtable-cell letters">D</div>
+      <div class="Rtable-cell letters">E</div>
+
+      <div class="Rtable-cell numbers">1</div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+
+      <div class="Rtable-cell numbers">2</div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+
+      <div class="Rtable-cell numbers">3</div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+
+      <div class="Rtable-cell numbers">4</div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+
+      <div class="Rtable-cell numbers">5</div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" onclick="showPoints()"></div>
+
+      <div id="teamsContainer">
+        <button class="btn skipTurn" onclick="skipTurn()">Skip turn</button>
+      </div>
+
+    </>
+
+  </div>
+    <!-- TyphoonGif -->
+    <div id="TyphoonGif"></div>
+
+    <!-- Game options modal -->
+<div class="modal" id="gameOptions">
+      <img src="img/logo.png" alt="" class="logo" />
+      <p class="message">Game Options</p>
+      <p id="T">T = : </p>
+      <div class="options">
+        <button class="btn" onclick="generateT()">Generate</button>
+      </div>
+      <p class="message">Number of Teams:</p>
+      <div class="options">
+        <button class="btn round-corners minus" onclick="addOrRemoveTeam('remove')"></button>
+        <button class="btn no-effects" id='numberOfTeams'>2</button>
+        <button class="btn round-corners plus" onclick="addOrRemoveTeam('add')"></button>
+      </div>
+      <div class="options">
+        <button class="btn" onclick="resetOptions()">Reset</button>
+        <button class="btn" onclick="startGame()">Go!</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+
+  </body>
+</html>
+
