@@ -18,90 +18,84 @@ function makeVisible(status) {
 }
 
 //points of the game
-const possibleValues = [1, 2, 3, 4, "T"];
-
 // selects all the cells
+let possibleValues = [
+  /* "+", "-", "&#247;", "x", "÷" */
+];
 const places = document.getElementsByClassName("place");
 
 //assign random numbers to each cell
 function assignValues() {
   for (let i = 0; i <= places.length - 1; i++) {
-    places[i].innerHTML = possibleValues[getRandomInt(0, 4)];
-  }
-}
-
-assignValues();
-
-//assign 5 Ts randomly
-function assignTs() {
-  for (let i = 0; i <= 5; i++) {
-    places[getRandomInt(0, 24)].innerHTML = possibleValues[4];
-  }
-}
-
-assignTs();
-
-/* generate T value */
-let valueOfT = [];
-// let giveOrLose = ["win", "lose"];
-let giveOrLoseObject = {
-  win: (number1, number2) => number1 + number2,
-  lose: (number1, number2) => number1 - number2,
-};
-let giveOrLoseArr = Object.keys(giveOrLoseObject);
-let tPoints = [1, 2, 3, 4 /* "half", "all"*/];
-let tPointsToWho = ["of your", "of the other"];
-
-/* modal generate T */
-function generateT() {
-  document.getElementById("T").innerText = "T = ";
-  valueOfT = [
-    giveOrLoseArr[getRandomInt(0, 2)],
-    tPoints[getRandomInt(0, 4)],
-    // tPointsToWho[getRandomInt(0, 2)],
-  ];
-  let stringOfT = `${valueOfT[0]} ${valueOfT[1]} 
-    point(s)`;
-  document.getElementById("T").insertAdjacentText("beforeend", stringOfT);
-}
-
-/* assign T points */
-function getTPoints(number1, number2) {
-  if (giveOrLoseArr[0] == valueOfT[0]) {
-    return giveOrLoseObject.win(number1, number2);
-  } else {
-    return giveOrLoseObject.lose(number1, number2);
+    places[i].innerHTML =
+      possibleValues[getRandomInt(0, possibleValues.length)];
   }
 }
 
 /* game options */
 
-// set number of teams
-function addOrRemoveTeam(operator) {
-  let currentValue = parseInt(
-    document.getElementById("numberOfTeams").innerText
-  );
-  if (currentValue < 5 && operator == "add") {
-    document.getElementById("numberOfTeams").innerText = currentValue + 1;
+// set number of teams , rows and starting points
+function addOrRemove(operator, what) {
+  let currentValue = parseInt(document.getElementById(what).innerText);
+  if (what == "startingPoints") {
+    if (currentValue < 50 && operator == "add") {
+      document.getElementById(what).innerText = currentValue + 10;
+    }
+    if (currentValue > 20 && operator == "remove") {
+      document.getElementById(what).innerText = currentValue - 10;
+    }
+  } else {
+    if (currentValue < 6 && operator == "add") {
+      document.getElementById(what).innerText = currentValue + 1;
+    }
+    if (currentValue > 1 && operator == "remove") {
+      document.getElementById(what).innerText = currentValue - 1;
+    }
   }
-  if (currentValue > 1 && operator == "remove") {
-    document.getElementById("numberOfTeams").innerText = currentValue - 1;
+}
+
+/* set operators */
+function setOperators() {
+  let plusCheckbox = document.getElementById("plus-checkbox");
+  let minusCheckbox = document.getElementById("minus-checkbox");
+  let divideCheckbox = document.getElementById("division-checkbox");
+  let multiplyCheckbox = document.getElementById("multiply-checkbox");
+  let checkboxArr = [
+    plusCheckbox,
+    minusCheckbox,
+    divideCheckbox,
+    multiplyCheckbox,
+  ];
+  for (i = 0; i < checkboxArr.length; i++) {
+    if (checkboxArr[i].checked == true) {
+      possibleValues.push(
+        checkboxArr[i].nextElementSibling.firstChild.innerHTML
+      );
+      console.log();
+      console.log(possibleValues);
+    }
   }
 }
 
 /*assign teams */
 //assign number of Teams
-let NUM_PLAYERS = 0;
+let NUM_PLAYERS = 0; //hardcode value for now
 let scores = [];
-
+let startingScore = 0;
 /* start the game */
 
 function startGame() {
+  createRows(parseInt(document.getElementById("numberOfRows").innerHTML));
+  setOperators();
+  assignValues();
+  startingScore = parseInt(document.getElementById("startingPoints").innerHTML);
   NUM_PLAYERS = document.getElementById("numberOfTeams").innerText;
   createTeams(NUM_PLAYERS);
-  // Make an array filled with 0s, with a length of NUM_PLAYERS:
-  scores = Array.from({ length: NUM_PLAYERS }, () => 0);
+  // Make an array filled with startingPoints, with a length of NUM_PLAYERS:
+  scores = Array.from({ length: NUM_PLAYERS }, () => startingScore);
   highlightPlayer();
+  let window = document.documentElement;
+  window.requestFullscreen();
   //modal close animations
   let table = document.getElementById("game");
   let modal = document.getElementById("gameOptions");
@@ -125,7 +119,7 @@ function createTeams(number) {
   for (i = 1; i <= number; i++) {
     let team = `<div class="team">
     <h4 id="teamName${i - 1}">Team ${i}</h4>
-    <span class="points" id="team${i}"></span>
+    <span class="points" id="team${i}">${startingScore}</span>
   </div>`;
     document
       .getElementById("teamsContainer")
@@ -133,28 +127,62 @@ function createTeams(number) {
   }
 }
 
+//create rows on HTML
+function createRows(number) {
+  for (i = 1; i <= number; i++) {
+    let row = `<div class="Rtable-cell numbers">${i}</div>
+    <div class="Rtable-cell place" data-row="${i}" onclick="showPoints()"></div>
+    <div class="Rtable-cell place" data-row="${i}" onclick="showPoints()"></div>
+    <div class="Rtable-cell place" data-row="${i}" onclick="showPoints()"></div>
+    <div class="Rtable-cell place" data-row="${i}" onclick="showPoints()"></div>
+    <div class="Rtable-cell place" data-row="${i}" onclick="showPoints()"></div>`;
+    document
+      .getElementById("teamsContainer")
+      .insertAdjacentHTML("beforebegin", row);
+  }
+}
+
 //assign points to a Team
 let activePlayerIndex = 0;
 
-// assign T points
-
-function assignPoints(points) {
-  if (points !== "T") {
-    scores[activePlayerIndex] += parseInt(points);
-    document.getElementById("team" + (activePlayerIndex + 1)).innerHTML =
-      scores[activePlayerIndex];
-    activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
-  } else {
-    makeVisible("visible");
-    scores[activePlayerIndex] = getTPoints(
-      scores[activePlayerIndex],
-      valueOfT[1]
-    );
-    document.getElementById("team" + (activePlayerIndex + 1)).innerHTML =
-      scores[activePlayerIndex];
-    activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
+function assignPoints(operator, points) {
+  switch (operator) {
+    case possibleValues[0]: //add
+      console.log("add");
+      //adds points to the team according to the row
+      scores[activePlayerIndex] += parseInt(points);
+      document.getElementById(
+        "team" + (activePlayerIndex + 1)
+      ).innerHTML = Math.round(scores[activePlayerIndex]);
+      activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
+      break;
+    case possibleValues[1]: //subtract
+      console.log("minus");
+      //subtracts points to the team according to the row
+      scores[activePlayerIndex] -= parseInt(points);
+      document.getElementById(
+        "team" + (activePlayerIndex + 1)
+      ).innerHTML = Math.round(scores[activePlayerIndex]);
+      activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
+      break;
+    case possibleValues[4]: //divides
+      //divides points to the team according to the row
+      scores[activePlayerIndex] = scores[activePlayerIndex] / parseInt(points);
+      document.getElementById(
+        "team" + (activePlayerIndex + 1)
+      ).innerHTML = Math.round(scores[activePlayerIndex]);
+      activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
+      break;
+    case possibleValues[3]:
+      console.log("multiply"); //multiply
+      scores[activePlayerIndex] = scores[activePlayerIndex] * parseInt(points);
+      document.getElementById(
+        "team" + (activePlayerIndex + 1)
+      ).innerHTML = Math.round(scores[activePlayerIndex]);
+      activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
+      //multiplies points to the team according to the row
+      break;
   }
-  console.log(activePlayerIndex);
   highlightPlayer();
 }
 
@@ -162,7 +190,8 @@ function assignPoints(points) {
 function showPoints() {
   event.target.style.fontSize = "4vw";
   event.target.className = "Rtable-cell place disabled";
-  assignPoints(event.target.innerHTML);
+  console.log(event.target.innerHTML, event.target.dataset.row);
+  assignPoints(event.target.innerHTML, event.target.dataset.row);
 }
 
 // skip turn button

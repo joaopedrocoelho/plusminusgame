@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
-    <title>Typhoon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <title>Plus Minus</title>
     <link rel="stylesheet" type="text/css" href="styles/style2.css" />
       </head>
   <body>
     
-    <!-- <div class="title"></div> -->
     <div class="Rtable Rtable--6cols" id='game'>
       <div class="Rtable-cell letters"></div>
       <div class="Rtable-cell letters">A</div>
@@ -17,41 +17,41 @@
       <div class="Rtable-cell letters">D</div>
       <div class="Rtable-cell letters">E</div>
 
-      <div class="Rtable-cell numbers">1</div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
+   <!-- <div class="Rtable-cell numbers">1</div>
+      <div class="Rtable-cell place" data-row="1" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="1" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="1" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="1" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="1" onclick="showPoints()"></div>
 
       <div class="Rtable-cell numbers">2</div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="2" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="2" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="2" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="2" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="2" onclick="showPoints()"></div>
 
       <div class="Rtable-cell numbers">3</div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="3" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="3" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="3" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="3" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="3" onclick="showPoints()"></div>
 
       <div class="Rtable-cell numbers">4</div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="4" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="4" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="4" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="4" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="4" onclick="showPoints()"></div>
 
       <div class="Rtable-cell numbers">5</div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-      <div class="Rtable-cell place" onclick="showPoints()"></div>
-
+      <div class="Rtable-cell place" data-row="5" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="5" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="5" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="5" onclick="showPoints()"></div>
+      <div class="Rtable-cell place" data-row="5" onclick="showPoints()"></div> 
+ -->
       <div id="teamsContainer">
         <button class="btn skipTurn" onclick="skipTurn()">Skip turn</button>
       </div>
@@ -59,28 +59,58 @@
     </>
 
   </div>
-    <!-- TyphoonGif -->
-    <div id="TyphoonGif"></div>
-
+    
     <!-- Game options modal -->
 <div class="modal" id="gameOptions">
-      <img src="img/logo.png" alt="" class="logo" />
-      <p class="message">Game Options</p>
-      <p id="T">T = : </p>
+  <h1 class="logo">Plus Minus</h1>
+  <p class="message">Operators:</p>
+  <div class="operator-container">
+  <div class="checkbox-container">
+    <input type="checkbox" id="plus-checkbox" checked>
+    <label class="hvr-pulse-grow" for="plus-checkbox"><h1 class="operator-label">+</h1></label>
+  </div>
+    
+  <div class="checkbox-container">
+    <input  type="checkbox" id="minus-checkbox" checked>
+    <label class="hvr-pulse-grow" for="minus-checkbox"><h1 class="operator-label">-</h1></label>
+  </div>
+
+  <div class="checkbox-container">
+    <input class="hvr-pulse-grow" type="checkbox" id="division-checkbox">
+    <label class="hvr-pulse-grow" for="division-checkbox"><h1 class="operator-label">&#247;</h1></label>
+  </div>
+    
+  <div class="checkbox-container">
+    <input  type="checkbox" id="multiply-checkbox">
+    <label class="hvr-pulse-grow" for="multiply-checkbox"><h1 class="operator-label">x</h1></label>
+  </div>
+</div>
+
+<p class="message">Starting points:</p>
+<div class="options">
+  <button class="btn round-corners minus" onclick="addOrRemove('remove', 'startingPoints')"></button>
+  <button class="btn no-effects" id='startingPoints'>10</button>
+  <button class="btn round-corners plus" onclick="addOrRemove('add','startingPoints' )"></button>
+</div>
+  
+<p class="message">Number of rows:</p>
+<div class="options">
+  <button class="btn round-corners minus" onclick="addOrRemove('remove', 'numberOfRows')"></button>
+  <button class="btn no-effects" id='numberOfRows'>6</button>
+  <button class="btn round-corners plus" onclick="addOrRemove('add','numberOfRows' )"></button>
+</div>
+      <p class="message">Number of teams:</p>
       <div class="options">
-        <button class="btn" onclick="generateT()">Generate</button>
-      </div>
-      <p class="message">Number of Teams:</p>
-      <div class="options">
-        <button class="btn round-corners minus" onclick="addOrRemoveTeam('remove')"></button>
+        <button class="btn round-corners minus" onclick="addOrRemove('remove', 'numberOfTeams')"></button>
         <button class="btn no-effects" id='numberOfTeams'>2</button>
-        <button class="btn round-corners plus" onclick="addOrRemoveTeam('add')"></button>
+        <button class="btn round-corners plus" onclick="addOrRemove('add', 'numberOfTeams')"></button>
       </div>
       <div class="options">
         <button class="btn" onclick="resetOptions()">Reset</button>
         <button class="btn" onclick="startGame()">Go!</button>
       </div>
     </div>
+    
     <script src="script.js"></script>
 
   </body>

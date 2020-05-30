@@ -1,10 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+
+:root {
+  --red: #fc564d;
+  --blue: #5519ff;
+  --yellow: #fff400;
+  --orange: #e8a132;
+  --purple: #d90968;
+  --green: #99c90b;
+}
 body,
 html {
   font-family: "Londrina Solid";
   height: 50%;
   margin: 0 auto;
   position: relative;
-  background: #00c3ff;
+  background-color: #fff400;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23e8a132' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /*Title */
@@ -55,6 +66,7 @@ html {
   border: solid 0.15vw #ffffff;
   /* border-image-source: linear-gradient(to right, #1cf7ff, #00c3ff); */
   font-size: 4vw;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Table column sizing
@@ -83,8 +95,8 @@ div.numbers {
 }
 /* Button styling */
 .place {
-  background-color: #fee140;
-  background-image: linear-gradient(to bottom, #fee140 0%, #fa709a 100%);
+  background-color: var(--orange);
+  background-image: linear-gradient(to top, var(--orange) 0%, var(--red) 100%);
 
   font-size: 0;
   font-weight: bolder;
@@ -93,14 +105,18 @@ div.numbers {
 }
 
 .place:hover {
-  background: linear-gradient(to bottom, #68f54c 5%, #61b350 100%);
+  background: linear-gradient(to bottom, var(--green) 5%, #61b350 100%);
   cursor: pointer;
   box-sizing: border-box;
 }
 
 .disabled {
   pointer-events: none;
-  background-image: linear-gradient(to top, #fee140 0%, #fa709a 100%);
+  background-image: linear-gradient(
+    to bottom,
+    var(--purple) 0%,
+    var(--red) 100%
+  );
 }
 
 /* Teams */
@@ -144,8 +160,8 @@ div.numbers {
 /* modal */
 
 .logo {
-  width: 40%;
-  height: 40%;
+  font-size: 4vw;
+  margin: 0;
 }
 
 .modal {
@@ -154,10 +170,11 @@ div.numbers {
   top: 50%;
   transform: translate(-50%, -10%);
   width: 50vw;
+  max-height: 90vw;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding: 2vw 2vw;
+  padding: 1vw 2vw;
   border: 3px solid black;
   border-radius: 5px;
   background: white;
@@ -190,8 +207,160 @@ div.numbers {
   }
 }
 
-.message {
+/* operator checkbox */
+
+.operator-container {
+  display: felx;
+  flex-wrap: wrap;
+  margin-bottom: -2vw;
+  margin-top: -2vw;
+}
+.checkbox-container {
+  display: flex;
+  float: left;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.operator-label {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 1vw;
+  font-size: 3vw;
+}
+
+.checkbox-container input[type="checkbox"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-container label::before {
+  content: "";
+  width: 1vw;
+  height: 1vw;
+  padding: 1vw 1vw;
+  border: 0.2vw solid black;
+  border-radius: 30%;
+}
+
+.checkbox-container label:hover::before,
+.checkbox-container input[type="checkbox"]:hover + label::before {
+}
+
+.checkbox-container input[type="checkbox"]:focus + label::before {
+  border-color: var(--red);
+}
+
+.checkbox-container input[type="checkbox"]:disabled + label,
+.checkbox-container input[type="checkbox"]:disabled {
+  color: #aaa;
+  cursor: default;
+}
+
+.checkbox-container input[type="checkbox"]:checked + label::before {
+  content: "\002714";
   font-size: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--blue);
+  animation-name: popIn;
+  animation-duration: 1s;
+}
+
+.checkbox-container input[type="checkbox"]:disabled + label::before {
+  background-color: #ccc;
+  border-color: #999;
+}
+
+/* hover animations */
+
+/* Pulse Grow */
+@-webkit-keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+.hvr-pulse-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-pulse-grow:hover,
+.hvr-pulse-grow:focus,
+.hvr-pulse-grow:active {
+  -webkit-animation-name: hvr-pulse-grow;
+  animation-name: hvr-pulse-grow;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+/* popIn */
+
+@keyframes popIn {
+  0% {
+    -webkit-transform: scale3d(0, 0, 0);
+    transform: scale3d(0, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    -webkit-animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    -webkit-transform: scale3d(1.08, 1.08, 1.08);
+    transform: scale3d(1.08, 1.08, 1.08);
+  }
+  60% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  80% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+  100% {
+    -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.popInLeft {
+  -webkit-animation-name: popInLeft;
+  animation-name: popInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+.message {
+  font-size: 3vw;
   margin: 1vw 0;
 }
 .btn {
@@ -245,11 +414,6 @@ div.numbers {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-#T {
-  font-size: 3vw;
-  margin: 1vw 0;
 }
 
 /* get extra space for the reset and go buttons */
