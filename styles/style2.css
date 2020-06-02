@@ -427,4 +427,79 @@ div.options + div.options {
   transform: translate(0, 0);
 }
 
-/* modal animation */
+/* scorePopup */
+.scorePop {
+  position: absolute;
+  box-sizing: border-box;
+  left: 40%;
+  top: 80%;
+  background-image: linear-gradient(to top, var(--orange) 0%, var(--red) 100%);
+  width: 20vw;
+  height: 20vw;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 0.5vw solid black;
+  border-radius: 10%;
+  color: white;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 9999;
+  visibility: hidden;
+}
+
+.scorePop h1 {
+  transform: translateY(-70%);
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 1vw;
+  font-size: 20vw;
+}
+
+@keyframes jumpInLeft {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5) rotate(-90deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale3d(1.2, 1.2, 1.2) rotate(10deg);
+  }
+  70% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate(-5deg);
+  }
+  90% {
+    transform: scale3d(1, 1, 1) rotate(0deg);
+  }
+}
+
+.jumpOutRight {
+  -webkit-animation-name: jumpOutRight;
+  animation-name: jumpOutRight;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes jumpOutRight {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1) rotate(0deg);
+    transform: scale3d(1, 1, 1) rotate(0deg);
+  }
+  30% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate(5deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate(5deg);
+  }
+  70% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2) rotate(-10deg);
+    transform: scale3d(1.2, 1.2, 1.2) rotate(-10deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.5, 0.5, 0.5) rotate(90deg);
+    transform: scale3d(0.5, 0.5, 0.5) rotate(90deg);
+  }
+}

@@ -190,7 +190,19 @@ function assignPoints(operator, points) {
 function showPoints() {
   event.target.style.fontSize = "4vw";
   event.target.className = "Rtable-cell place disabled";
-  console.log(event.target.innerHTML, event.target.dataset.row);
+  let scorePopUpBox = document.getElementById("scorePopUpBox");
+  let scorePopUp = document.getElementById("scorePopUp");
+  scorePopUp.innerText = event.target.innerText;
+  scorePopUpBox.style.visibility = "visible";
+  scorePopUpBox.style.animationName = "jumpInLeft";
+  setTimeout(
+    () => (
+      (scorePopUpBox.style.animationDuration = "1s"),
+      (scorePopUpBox.style.animationName = "jumpOutRight")
+    ),
+    1500
+  );
+  setTimeout(() => (scorePopUpBox.style.visibility = "hidden"), 2500);
   assignPoints(event.target.innerHTML, event.target.dataset.row);
 }
 
