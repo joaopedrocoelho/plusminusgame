@@ -94,8 +94,8 @@ function startGame() {
   // Make an array filled with startingPoints, with a length of NUM_PLAYERS:
   scores = Array.from({ length: NUM_PLAYERS }, () => startingScore);
   highlightPlayer();
-  let window = document.documentElement;
-  window.requestFullscreen();
+  /* let window = document.documentElement;
+  window.requestFullscreen(); */
   //modal close animations
   let table = document.getElementById("game");
   let modal = document.getElementById("gameOptions");
