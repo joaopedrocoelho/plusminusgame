@@ -112,6 +112,7 @@ function startGame() {
     ),
     1000
   );
+  console.log(possibleValues);
 }
 
 //create teams on HTML
@@ -165,7 +166,7 @@ function assignPoints(operator, points) {
       ).innerHTML = Math.round(scores[activePlayerIndex]);
       activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
       break;
-    case possibleValues[4]: //divides
+    case possibleValues[2]: //divides
       //divides points to the team according to the row
       scores[activePlayerIndex] = scores[activePlayerIndex] / parseInt(points);
       document.getElementById(
