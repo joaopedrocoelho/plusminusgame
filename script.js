@@ -148,7 +148,7 @@ let activePlayerIndex = 0;
 
 function assignPoints(operator, points) {
   switch (operator) {
-    case possibleValues[0]: //add
+    case "+": //add
       console.log("add");
       //adds points to the team according to the row
       scores[activePlayerIndex] += parseInt(points);
@@ -157,7 +157,7 @@ function assignPoints(operator, points) {
       ).innerHTML = Math.round(scores[activePlayerIndex]);
       activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
       break;
-    case possibleValues[1]: //subtract
+    case "-": //subtract
       console.log("minus");
       //subtracts points to the team according to the row
       scores[activePlayerIndex] -= parseInt(points);
@@ -166,7 +166,7 @@ function assignPoints(operator, points) {
       ).innerHTML = Math.round(scores[activePlayerIndex]);
       activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
       break;
-    case possibleValues[2]: //divides
+    case "÷": //divides
       //divides points to the team according to the row
       scores[activePlayerIndex] = scores[activePlayerIndex] / parseInt(points);
       document.getElementById(
@@ -174,7 +174,7 @@ function assignPoints(operator, points) {
       ).innerHTML = Math.round(scores[activePlayerIndex]);
       activePlayerIndex = (activePlayerIndex + 1) % NUM_PLAYERS;
       break;
-    case possibleValues[3]:
+    case "x":
       console.log("multiply"); //multiply
       scores[activePlayerIndex] = scores[activePlayerIndex] * parseInt(points);
       document.getElementById(
